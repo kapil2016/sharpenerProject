@@ -6,4 +6,9 @@ for(const item of items){
     item.style.fontWeight = 'bold' ;
     item.style.color ='green' ;
 }
+items[2].style.backgroundColor ='green';
+for(const item of items){
+    item.style.fontWeight = 'bold' ;
+    item.style.color ='gray' ;
+}
 
