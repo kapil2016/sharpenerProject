@@ -1,56 +1,39 @@
-
-// const header = document.getElementById('main-header');
-// header.style.borderBottom ='solid 3px black' ;
-
-
-// document.querySelector('.list-group-item:nth-child(2)').style.background = 'green';
-
-// document.querySelector('.list-group-item:nth-child(3)').style.display = 'none';
-// document.querySelectorAll('.list-group-item')[1].style.color = 'green'
-// const odd = document.querySelectorAll('li:nth-child(odd)') ;
-
-// for(let i = 0 ; i <odd.length ; i++){
-    
-//    odd[i].style.background ='green';
+const submitbtn = document.getElementById('submitbtn')
+submitbtn.addEventListener('click',(e)=>{
+   e.preventDefault();
+   const forminput = document.getElementById('forminput') ;
+   const ul = document.getElementById('items') ;
+   const li = document.createElement('li');
+   const deletebtn = document.createElement('button');
+   const editbtn = document.createElement('button');
+   editbtn.type = 'button';
+   editbtn.textContent = 'edit';
+   editbtn.className = 'btn btn-success btn-sm float-right edit mr-3';
    
-// }
-const listitems = document.querySelector('#items');
-// console.log(listitems);
-// console.log(listitems.parentElement);
-// console.log(listitems.lastElementChild);
-// console.log(listitems.lastChild);
-// console.log(listitems.firstElementChild);
-// console.log(listitems.firstChild);
-// console.log(listitems.nextSibling);
-// console.log(listitems.nextElementSibling);
-// console.log(listitems.previousSibling);
-// console.log(listitems.previousElementSibling);
-// const listitemchild = listitems.children[1];
-// console.log(listitemchild);
-const newelement = document.createElement('p');
-newelement.className = 'hello';
-newelement.textContent = 'hello world' ;
-newelement.id = 'hello1';
-const header = document.querySelector('header .container');
-const h1 = document.querySelector('header h1');
-header.insertBefore(newelement , h1);
-newelement.style.fontSize = '25px'
-//header.appendChild(newelement);
-const newelement2 = document.createElement('li');
-newelement2.className = 'list-group-item';
-newelement2.textContent = 'hello world' ;
+   deletebtn.type = 'button' ;
+   deletebtn.textContent = 'delete' ;
+   deletebtn.className = 'btn btn-danger btn-sm float-right delete'
+   li.className = 'list-group-item' ;
+   li.textContent = forminput.value ;
+   
+   li.appendChild(deletebtn);
+   li.appendChild(editbtn);
+   ul.appendChild(li) ;
+   forminput.value = '' ;
 
+   
+} )
 
-const itemlist = document.querySelector('#items');
-itemlist.insertBefore(newelement2 , itemlist.firstElementChild);
-
-console.log(itemlist);
-
-
-
-
-
-
-
+const list = document.querySelector('#items');
+list.addEventListener('click' , (e)=>{
+   if (e.target.classList.contains('delete')){
+      if (confirm("are you sure")){
+      let li = e.target.parentElement ;
+      list.removeChild(li); 
+      }
+     
+   }
+   
+})
 
 
