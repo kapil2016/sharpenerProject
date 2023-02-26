@@ -1,16 +1,20 @@
 
 const header = document.getElementById('main-header');
 header.style.borderBottom ='solid 3px black' ;
-// const items = document.getElementsByClassName('list-group-item') ;
-// for(const item of items){
-//     item.style.fontWeight = 'bold' ;
-//     item.style.backgroundColor ='gray' ;
-// }
-const items = document.getElementsByTagName('li') ;
-for(const item of items){
-    item.style.fontWeight = 'bold' ;
-    item.style.backgroundColor ='gray' ;
+
+
+document.querySelector('.list-group-item:nth-child(2)').style.background = 'green';
+
+document.querySelector('.list-group-item:nth-child(3)').style.display = 'none';
+document.querySelectorAll('.list-group-item')[1].style.color = 'green'
+const odd = document.querySelectorAll('li:nth-child(odd)') ;
+
+for(let i = 0 ; i <odd.length ; i++){
+    
+   odd[i].style.background ='green';
+   
 }
+
 
 
 
