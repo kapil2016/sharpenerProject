@@ -4,10 +4,21 @@ const phone = document.querySelector("#phone");
 const date = document.querySelector("#date");
 const time = document.querySelector("#time");
 const forminputs = document.querySelectorAll(".form-control");
-document.querySelector("#submitbtn").addEventListener("click", (e) => {
-    let userDetailesString = ""
+function listuser(userDetailes){
     const ul = document.getElementById('items') ;
     const li = document.createElement('li');
+    const deletebtn = document.createElement('button');
+    deletebtn.type = 'button' ;
+    deletebtn.textContent = 'delete' ;
+    deletebtn.className = 'btn btn-danger btn-sm delete'
+    deletebtn.style.float = 'right' ;
+    li.className = 'list-group-item' ;
+    li.innerText = `${userDetailes.name} ${userDetailes.email} ${userDetailes.phone} ${userDetailes.date} ${userDetailes.time}`
+    li.appendChild(deletebtn);
+    ul.appendChild(li);
+}
+
+document.querySelector("#submitbtn").addEventListener("click", (e) => {   
   e.preventDefault();
   if (
     username.value != "" &&
@@ -18,15 +29,34 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
   ) {
     const forminputs = document.querySelectorAll(".form-control");
     let userDetailes = {};
-    
     for (let item of forminputs) {
        userDetailes[item.name] = item.value ;
        item.value = '' ;
     }
-    localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
-    li.className = 'list-group-item' ;
-    li.innerText = `${userDetailes.name} ${userDetailes.email} ${userDetailes.phone} ${userDetailes.date} ${userDetailes.time}`
-    ul.appendChild(li);
-    
+    if (localStorage.getItem(userDetailes.email) == null){
+        localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
+        listuser(userDetailes) ;
+    } else {
+        alert('user already regesterd')
+    }
   }
 });
+
+for (let i = 0 ; i < localStorage.length ; i++){
+    let userDetailes = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    listuser(userDetailes);
+}
+const list = document.querySelector('#items');
+list.addEventListener('click' , (e)=>{
+   if (e.target.classList.contains('delete')){
+      if (confirm("are you sure")){
+      let li = e.target.parentElement ;
+      let key = li.innerText.split(" ")[1];
+      localStorage.removeItem(key);
+      list.removeChild(li); 
+      }
+   }  
+})
+
+
+
