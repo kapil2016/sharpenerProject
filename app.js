@@ -8,12 +8,19 @@ function listuser(userDetailes){
     const ul = document.getElementById('items') ;
     const li = document.createElement('li');
     const deletebtn = document.createElement('button');
+    const editbtn = document.createElement('button');
+    editbtn.type = 'button';
+    editbtn.textContent = 'edit';
+    editbtn.className = 'btn btn-success btn-sm edit';
     deletebtn.type = 'button' ;
     deletebtn.textContent = 'delete' ;
     deletebtn.className = 'btn btn-danger btn-sm delete'
     deletebtn.style.float = 'right' ;
+    editbtn.style.float = 'right' ;
+    editbtn.style.marginLeft = '20px' ;
     li.className = 'list-group-item' ;
-    li.innerText = `${userDetailes.name} ${userDetailes.email} ${userDetailes.phone} ${userDetailes.date} ${userDetailes.time}`
+    li.innerText = `${userDetailes.name} | ${userDetailes.email} | ${userDetailes.phone} | ${userDetailes.date} | ${userDetailes.time}`
+    li.appendChild(editbtn);
     li.appendChild(deletebtn);
     ul.appendChild(li);
 }
@@ -51,12 +58,27 @@ list.addEventListener('click' , (e)=>{
    if (e.target.classList.contains('delete')){
       if (confirm("are you sure")){
       let li = e.target.parentElement ;
-      let key = li.innerText.split(" ")[1];
+      let key = li.innerText.split(" | ")[1];
       localStorage.removeItem(key);
       list.removeChild(li); 
       }
    }  
 })
+list.addEventListener('click' , (e)=>{
+    if (e.target.classList.contains('edit')){
+       let li = e.target.parentElement ;
+       let values = li.innerText.split(" | ");
+       let key = values[1];
+       username.value = values[0]
+       email.value =values[1]
+       phone.value = values[2]
+       date.value = values[3]
+       time.value = values[4]
+       localStorage.removeItem(key);
+       list.removeChild(li); 
+       
+    }  
+ })
 
 
 
