@@ -14,9 +14,11 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
     date != ""
   ) {
     const forminputs = document.querySelectorAll(".form-control");
-    for (const item of forminputs) {
-        localStorage.setItem(item.name , item.value); 
-        item.value = "";
+    let userDetailes = {};
+    for (let item of forminputs) {
+       userDetailes[item.name] = item.value ;
+       item.value = '' ;
     }
+    localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
   }
 });
