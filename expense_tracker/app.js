@@ -1,8 +1,8 @@
 const uniqueid = Date.now();
-const amount = document.querySelector("#amount");
-const discription = document.querySelector("#discription");
-const category = document.querySelector("#category");
 const forminputs = document.querySelectorAll(".form-control");
+const amount = forminputs[0]
+const discription = forminputs[1]
+const category = forminputs[2]
 function listuser(userDetailes){
     const ul = document.getElementById('items') ;
     const li = document.createElement('li');
@@ -33,7 +33,6 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
     category.value != "" 
     
   ) {
-    const forminputs = document.querySelectorAll(".form-control");
     let userDetailes = {};
     userDetailes[forminputs[0].name] = forminputs[0].value ;
     userDetailes[forminputs[1].name] = forminputs[1].value ;
@@ -68,15 +67,17 @@ list.addEventListener('click' , (e)=>{
     if (e.target.classList.contains('edit')){
         if (confirm("are you sure")){
        let li = e.target.parentElement ;
-       let values = li.innerText.split(" | ");
+       let childs = li.firstChild.nodeValue
+       let values = childs.split(' | ') ;
        let key = li.id ;
        amount.value = values[0]
        discription.value =values[1]
        category.value = values[2]
+       console.log(childs)
        localStorage.removeItem(key);
        list.removeChild(li); }
        
-    }  
+   }  
  })
 
 
