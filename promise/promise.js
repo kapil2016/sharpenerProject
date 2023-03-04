@@ -38,8 +38,22 @@ function deletePost(){
     })
 
 }
-Promise.all([updateLastUserActivityTime,createPost({title:"post 1"}),createPost({title:"post 2"})]).then(getPosts)
-.then((data)=> console.log(data)).then(deletePost).then(getPosts).then(data=>console.log(data));
+// Promise.all([updateLastUserActivityTime,createPost({title:"post 1"}),createPost({title:"post 2"})]).then(getPosts)
+// .then((data)=> console.log(data)).then(deletePost).then(getPosts).then(data=>console.log(data));
+
+async function handlePosts(){
+    await Promise.all[createPost({title:"post 1"}) , createPost({title:"post 2"}) ,createPost({title:"post 3"}), updateLastUserActivityTime()]
+    let posts =  await getPosts();
+    console.log(posts);
+    await deletePost();
+    posts = await getPosts();
+    console.log(posts);
+    await deletePost();
+    posts = await getPosts() ;
+    console.log(posts);
+
+}
+handlePosts();
 
 
 
