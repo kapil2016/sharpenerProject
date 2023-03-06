@@ -81,16 +81,25 @@ list.addEventListener('click' , (e)=>{
 })
 list.addEventListener('click' , (e)=>{
     if (e.target.classList.contains('edit')){
-       let li = e.target.parentElement ;
-       let values = li.innerText.split(" | ");
-       let key = values[1];
-       username.value = values[0]
-       email.value =values[1]
-       phone.value = values[2]
-       date.value = values[3]
-       time.value = values[4]
-       list.removeChild(li); 
-       
+      if (confirm("are you sure ? do you want to edit!")){
+        let li = e.target.parentElement ;
+        let values = li.firstChild.nodeValue.split(" | ");
+        let key = values[1];
+        username.value = values[0]
+        email.value =values[1]
+        phone.value = values[2]
+        date.value = values[3]
+        time.value = values[4]
+        console.log(values[4]) ;
+        axios.delete(`${crudApiurl}/${li.id}`)
+      .then(res => {
+        list.removeChild(li); 
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+      } 
     }  
  })
 
