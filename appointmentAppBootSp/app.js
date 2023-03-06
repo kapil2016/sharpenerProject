@@ -1,3 +1,5 @@
+const crudcrudid = '162f4317c48f49e1851e0898f113d6c7' ;
+const crudApiurl = `https://crudcrud.com/api/${crudcrudid}/appointmentData`;
 const username = document.querySelector("#name");
 const email = document.querySelector("#email");
 const phone = document.querySelector("#phone");
@@ -40,19 +42,24 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
        userDetailes[item.name] = item.value ;
        item.value = '' ;
     }
-    if (localStorage.getItem(userDetailes.email) == null){
-        localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
-        listuser(userDetailes) ;
-    } else {
-        alert('user already regesterd')
-    }
+    // if (localStorage.getItem(userDetailes.email) == null){
+    //     localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
+    //     listuser(userDetailes) ;
+    // } else {
+    //     alert('user already regesterd')
+    // }
+    axios({
+      method:'post',
+      url:crudApiurl,
+      data:userDetailes
+    }).then((res)=>console.log(res))
   }
 });
 
-for (let i = 0 ; i < localStorage.length ; i++){
-    let userDetailes = JSON.parse(localStorage.getItem(localStorage.key(i)))
-    listuser(userDetailes);
-}
+// for (let i = 0 ; i < localStorage.length ; i++){
+//     let userDetailes = JSON.parse(localStorage.getItem(localStorage.key(i)))
+//     listuser(userDetailes);
+// }
 const list = document.querySelector('#items');
 list.addEventListener('click' , (e)=>{
    if (e.target.classList.contains('delete')){
