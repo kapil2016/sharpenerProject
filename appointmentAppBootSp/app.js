@@ -1,5 +1,12 @@
 const crudcrudid = '162f4317c48f49e1851e0898f113d6c7' ;
 const crudApiurl = `https://crudcrud.com/api/${crudcrudid}/appointmentData`;
+async function getDataFromCrud(url){
+  const respones = await axios.get(url) ;
+  respones.data.forEach(user => {
+    listuser(user);
+  });
+}
+getDataFromCrud(crudApiurl);
 const username = document.querySelector("#name");
 const email = document.querySelector("#email");
 const phone = document.querySelector("#phone");
@@ -52,7 +59,9 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
       method:'post',
       url:crudApiurl,
       data:userDetailes
-    }).then((res)=>console.log(res))
+    }).then((res)=>{
+      axios.get(`${crudApiurl}/${res.data._id}`).then((res)=>listuser(res.data));
+    })
   }
 });
 
@@ -66,7 +75,7 @@ list.addEventListener('click' , (e)=>{
       if (confirm("are you sure")){
       let li = e.target.parentElement ;
       let key = li.innerText.split(" | ")[1];
-      localStorage.removeItem(key);
+     // localStorage.removeItem(key);
       list.removeChild(li); 
       }
    }  
@@ -81,7 +90,7 @@ list.addEventListener('click' , (e)=>{
        phone.value = values[2]
        date.value = values[3]
        time.value = values[4]
-       localStorage.removeItem(key);
+       //localStorage.removeItem(key);
        list.removeChild(li); 
        
     }  
