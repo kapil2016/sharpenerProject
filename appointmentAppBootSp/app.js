@@ -6,6 +6,7 @@ async function getDataFromCrud(url){
     listuser(user);
   });
 }
+
 getDataFromCrud(crudApiurl);
 const username = document.querySelector("#name");
 const email = document.querySelector("#email");
@@ -27,6 +28,7 @@ function listuser(userDetailes){
     deletebtn.style.float = 'right' ;
     editbtn.style.float = 'right' ;
     editbtn.style.marginLeft = '20px' ;
+    li.id = userDetailes._id ;
     li.className = 'list-group-item' ;
     li.innerText = `${userDetailes.name} | ${userDetailes.email} | ${userDetailes.phone} | ${userDetailes.date} | ${userDetailes.time}`
     li.appendChild(editbtn);
@@ -49,34 +51,31 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
        userDetailes[item.name] = item.value ;
        item.value = '' ;
     }
-    // if (localStorage.getItem(userDetailes.email) == null){
-    //     localStorage.setItem(userDetailes.email , JSON.stringify(userDetailes));
-    //     listuser(userDetailes) ;
-    // } else {
-    //     alert('user already regesterd')
-    // }
+  
     axios({
       method:'post',
       url:crudApiurl,
       data:userDetailes
     }).then((res)=>{
-      axios.get(`${crudApiurl}/${res.data._id}`).then((res)=>listuser(res.data));
+      axios.get(`${crudApiurl}/${res.data._id}`)
+      .then((res)=>listuser(res.data));
     })
   }
 });
 
-// for (let i = 0 ; i < localStorage.length ; i++){
-//     let userDetailes = JSON.parse(localStorage.getItem(localStorage.key(i)))
-//     listuser(userDetailes);
-// }
 const list = document.querySelector('#items');
 list.addEventListener('click' , (e)=>{
    if (e.target.classList.contains('delete')){
       if (confirm("are you sure")){
       let li = e.target.parentElement ;
-      let key = li.innerText.split(" | ")[1];
-     // localStorage.removeItem(key);
-      list.removeChild(li); 
+      axios.delete(`${crudApiurl}/${li.id}`)
+      .then(res => {
+        list.removeChild(li); 
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err); 
+      })
       }
    }  
 })
@@ -90,7 +89,6 @@ list.addEventListener('click' , (e)=>{
        phone.value = values[2]
        date.value = values[3]
        time.value = values[4]
-       //localStorage.removeItem(key);
        list.removeChild(li); 
        
     }  
