@@ -1,18 +1,28 @@
-const crudcrudid = '5fddb18be090458cab226c7f71e1a3b4' ;
+const crudcrudid = 'ffb75201c9854a7cab354075aaf769d4' ;
 const crudApiurl = `https://crudcrud.com/api/${crudcrudid}/`;
+
 async function getDataFromCrud(url,category){
-  const respones = await axios.get(`${url}${category}`) ;
-  respones.data.forEach(item => {
+  try {
+    const respones = await axios.get(`${url}${category}`) ;
+    respones.data.forEach(item => {
     listItems(item,category);
   });
+  } catch (error) {
+    console.log(error)
+  }
+  
 }
-getDataFromCrud(crudApiurl,'electronic');
-getDataFromCrud(crudApiurl,'skincare');
-getDataFromCrud(crudApiurl,'foodItems');
+window.addEventListener('DOMContentLoaded',()=>{
+  getDataFromCrud(crudApiurl,'electronic');
+  getDataFromCrud(crudApiurl,'skincare');
+  getDataFromCrud(crudApiurl,'foodItems');
+})
+
 const forminputs = document.querySelectorAll(".form-control");
 const amount = forminputs[0]
 const product = forminputs[1]
 const category = forminputs[2]
+
 function listItems(itemDetails , itemCategory){
     const ul = document.getElementById(`${itemCategory}`) ;
     const li = document.createElement('li');
@@ -61,6 +71,7 @@ document.querySelector("#submitbtn").addEventListener("click", (e) => {
 const listelectronic = document.querySelector('#electronic');
 const listskincare = document.querySelector('#skincare');
 const listfood = document.querySelector('#foodItems');
+
 listelectronic.addEventListener('click' , (e)=>{
    if (e.target.classList.contains('delete')){
       if (confirm("are you sure")){
@@ -78,6 +89,7 @@ listelectronic.addEventListener('click' , (e)=>{
       }
    } 
 );
+
 listskincare.addEventListener('click' , (e)=>{
   if (e.target.classList.contains('delete')){
      if (confirm("are you sure")){
@@ -93,7 +105,8 @@ listskincare.addEventListener('click' , (e)=>{
 
      }
   }  
-})
+});
+
 listfood.addEventListener('click' , (e)=>{
   if (e.target.classList.contains('delete')){
      if (confirm("are you sure")){
