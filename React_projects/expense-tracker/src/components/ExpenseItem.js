@@ -1,25 +1,17 @@
-//import React from "react";
+import React from "react";
+import './ExpenseItem.css';
+
 function ExpenseItem() {
-  const expenses = [
-    { title: "food", price: "Rs 10" },
-    { title: "petrol", price: "Rs 100" },
-    { title: "Movie", price: "Rs 200" },
-  ];
   return (
-    <>
-      <div>
-        <h1>{expenses[0].title}</h1>
-        <p>{expenses[0].price}</p>
+      <div className="expense-item">
+        <div>Mar 12 2023</div>
+        <div className="expense-item__description">
+          <h2>Car insurance</h2>
+          <h2>Location Of Expenditure</h2>
+          <div className="expense-item__price">$290.40</div> 
+        </div>
+        
       </div>
-      <div>
-        <h1>{expenses[1].title}</h1>
-        <p>{expenses[1].price}</p>
-      </div>
-      <div>
-        <h1>{expenses[2].title}</h1>
-        <p>{expenses[2].price}</p>
-      </div>
-    </>
   );
 }
 export default ExpenseItem;
