@@ -12,7 +12,9 @@ const ExpenseForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log( `${enteredTitle} ${enteredAmount} ${enteredDate}`);
+    const ExpenseData = {title : enteredTitle , price : enteredAmount , date : enteredDate};
+
+    console.log(ExpenseData);
     setTitle('');
     setAmount('');
     setDate('');
