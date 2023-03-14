@@ -1,6 +1,7 @@
 import './App.css';
 import ExpenseItem from './components/ExpensesElement/ExpenseItem';
 import Card from './components/UI/Card';
+import ExpenseForm from './components/Form/ExpenseForm';
 
 const App = ()=> {
   const expenses = [
@@ -13,10 +14,12 @@ const App = ()=> {
   ]
   return (
     <Card className='expenses'>
+    <ExpenseForm></ExpenseForm>
       {expenses.map(e => {
        return <ExpenseItem title = {e.title} date ={e.date} price = {e.price} LocationOfExpenditure = {e.LocationOfExpenditure}></ExpenseItem>
       })}
-    </Card>
+    </Card> 
+    
   );
 }
 
