@@ -23,6 +23,7 @@ const ExpenseForm = (props) => {
       setTitle("");
       setAmount("");
       setDate("");
+      props.visability(false);
     }else {
       alert("please fill the details")
     }
@@ -45,8 +46,10 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={()=>{props.visability(false)}} >Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
+      
     </form>
   );
 };
