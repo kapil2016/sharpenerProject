@@ -14,6 +14,7 @@ const ExpenseForm = (props) => {
     event.preventDefault();
     if (enteredTitle !== "" && enteredAmount !== "" && enteredDate !== "") {
       const ExpenseData = {
+        id : Date.now(),
         title: enteredTitle,
         price: enteredAmount,
         date: new Date(enteredDate),
