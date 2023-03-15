@@ -1,0 +1,19 @@
+.filter-expense {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    margin-right: 1rem;
+    color: white;
+  }
+  
+  select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 1rem;
+  }
+  
