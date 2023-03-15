@@ -4,7 +4,7 @@ import './FilterExpense.css';
 const FilterExpense = (props) => {
   const { selectedYear, onYearChange } = props;
 
-  const years = [2023, 2022, 2021, 2020]; // list of available years
+  const years = ['Select Year',2023, 2022, 2021, 2020]; // list of available years
 
   const yearChangeHandler = (event) => {
     onYearChange(event.target.value);
