@@ -5,6 +5,9 @@ import ExpenseForm from "./components/Form/ExpenseForm";
 import { useState } from "react";
 import FilterExpense from "./components/FilterExpense/FilterExpense";
 import ShowHideForm from "./components/Form/ShowHideForm";
+import ExpenseChart from "./components/ExpenseChart/ExpenseChart";
+
+
 
 const App = () => {
   const [expenses, setExpense] = useState([]);
@@ -24,14 +27,14 @@ const App = () => {
         ? true
         : e.date.getFullYear().toString() === selectedYear.toString()
     )
-    .map((e) => (
-      <ExpenseItem
-        key={e.id}
-        title={e.title}
-        date={e.date}
-        price={e.price}
-      ></ExpenseItem>
-    ));
+  const showExpense = filterdList.map((e) => (
+    <ExpenseItem
+      key={e.id}
+      title={e.title}
+      date={e.date}
+      price={e.price}
+    ></ExpenseItem>
+  ));  
 
   let showSuggestion = ''
 
@@ -46,15 +49,19 @@ const App = () => {
 
   return (
     <div>
+      
       <Card className="expenses">
        {form}
+      </Card>
+      <Card className="expenses">
+      <ExpenseChart data = {filterdList}></ExpenseChart>
       </Card>
       <Card className="expenses">
       <FilterExpense
           selectedYear={selectedYear}
           onYearChange={yearChangeHandler}
         />
-        {filterdList}
+        {showExpense}
         {showSuggestion}
         </Card>
     </div>
