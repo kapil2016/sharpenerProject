@@ -1,0 +1,25 @@
+.Button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Button:hover {
+    background-color: #0062cc;
+  }
+  
+  .Button:active {
+    background-color: #005cbf;
+  }
+  
+  .Button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

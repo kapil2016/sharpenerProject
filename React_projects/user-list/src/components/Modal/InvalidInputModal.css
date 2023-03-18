@@ -1,0 +1,37 @@
+.invalid-input-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .invalid-input-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .invalid-input-modal__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .invalid-input-modal__message {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .invalid-input-modal__close-btn {
+    background-color: #ccc;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,23 @@
+.user-list-item-card {
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    width: auto;
+    margin: 10px;;
+    display: flex;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+.username {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.age {
+   font-size: 20px;
+   margin-left: 10px;
+}
