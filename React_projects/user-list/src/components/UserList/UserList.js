@@ -4,6 +4,7 @@ const UserList = (props) => {
     <div class="user-list-item-card">
       <div class="username">{props.userName}</div>
       <div class="age"> ({props.userAge} years old) </div>
+      <div class="age"> from {props.userCollege} </div>
     </div>
   );
 };

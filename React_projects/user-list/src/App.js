@@ -5,6 +5,7 @@ import UserList from "./components/UserList/UserList";
 import Card from "./components/UI/Card/Card";
 import { useState } from "react";
 
+
 function App() {
   const [users, setUsers] = useState([]);
 
@@ -14,6 +15,7 @@ function App() {
         key={user.id}
         userName={user.Name}
         userAge={user.Age}
+        userCollege={user.College}
       ></UserList>
     );
   });
