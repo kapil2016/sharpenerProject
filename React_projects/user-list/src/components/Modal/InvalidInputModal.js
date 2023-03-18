@@ -10,7 +10,6 @@ const InvalidInputModal = ({ isOpen, onRequestClose ,message }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       className="invalid-input-modal"
-      overlayClassName="invalid-input-modal-overlay"
     >
       <h2 className="invalid-input-modal__title">Invalid Input</h2>
       <p className="invalid-input-modal__message">
