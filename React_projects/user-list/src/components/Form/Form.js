@@ -32,10 +32,10 @@ const Form = (props) => {
       setInvalidMessage(" User Age Can't be less then one ") 
       setIsOpen(true);
     }else if (userName.trim().length <= 0){
-      setInvalidMessage(" User Name  Can't be Empty ")
+      setInvalidMessage(" User Name Can't be Empty ")
       setIsOpen(true);
     }else{
-      setInvalidMessage(" Plese fill All The Fields")
+      setInvalidMessage("Form is not valid. Please fill All The Fields")
       setIsOpen(true);
     }
     
