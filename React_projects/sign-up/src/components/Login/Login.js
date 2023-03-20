@@ -30,24 +30,27 @@ const Login = (props) => {
   // const [enteredPassword, setEnteredPassword] = useState('');
   // const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-
   const[emailState , dispatchEmailState] = useReducer(emailReducer , {value: '' , isValid : null})
   const[passwordState , dispatchPasswordState] = useReducer(passwordReducer , {value: '' , isValid : null})
+  useEffect(()=>{
+    setFormIsValid(emailState.isValid && passwordState.isValid);
+    console.log('chaking validation')
+  },[emailState.isValid , passwordState.isValid])
 
   const emailChangeHandler = (event) => {
     dispatchEmailState({type : 'Email' , val : event.target.value})
 
-    setFormIsValid(
-      event.target.value.includes('@') && passwordState.isValid
-    );
+    // setFormIsValid(
+    //   event.target.value.includes('@') && passwordState.isValid
+    // );
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPasswordState({type : 'Password' , val : event.target.value})
 
-    setFormIsValid(
-        emailState.isValid && event.target.value.trim().length > 6 
-    );
+    // setFormIsValid(
+    //     emailState.isValid && event.target.value.trim().length > 6 
+    // );
   };
 
   const validateEmailHandler = () => {
