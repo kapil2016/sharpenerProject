@@ -11,14 +11,21 @@ const Counter = () => {
   const decrementValue = ()=>{
       dispatch({type:'decr'})
   }
+
+  const increseBy = ()=>{
+    dispatch({type:'incrBy' , payload:5})
+  }
   const toggleCounterHandler = () => {};
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
       <div className={classes.value}>{counter}</div>
+      <div>
       <button onClick={incrementValue}>incremnetBy2</button>
       <button onClick={decrementValue}>decrementBy2</button>
+      </div>
+      <button onClick={increseBy}>decrementBy5</button>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
   );

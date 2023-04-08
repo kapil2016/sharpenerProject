@@ -10,6 +10,10 @@ const reducerCounter = (state={counter : 0} , action)=>{
         return {
             counter : state.counter -2
         }
+    }else if(action.type==='incrBy'){
+        return{
+            counter:state.counter + action.payload
+        }
     }
     return state ;
 }
