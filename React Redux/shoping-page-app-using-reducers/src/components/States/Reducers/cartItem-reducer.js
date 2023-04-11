@@ -28,9 +28,12 @@ reducers:{
         }else{
             state.orderList = state.orderList.filter(item=>item.id !== id);
         }
+    },
+    setCart:(state , action)=>{
+        state.orderList = action.payload;
     }
 }
 })
-export const {addNewOrder , removeOrder} = cartItemSlice.actions;
+export const {addNewOrder , removeOrder ,setCart} = cartItemSlice.actions;
 const cartItemReducer = cartItemSlice.reducer;
 export default cartItemReducer;

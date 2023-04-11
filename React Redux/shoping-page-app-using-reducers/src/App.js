@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Notification from './components/UI/Notification';
 import { setNotification } from './components/States/Reducers/ui-reducer';
+import { setCart } from './components/States/Reducers/cartItem-reducer';
+
 
 async function updateCartData(cartData ,dispatch) {
   dispatch(setNotification({
@@ -21,7 +23,7 @@ async function updateCartData(cartData ,dispatch) {
         'Content-Type': 'application/json'
       }
     });
-    
+  
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -33,6 +35,40 @@ async function updateCartData(cartData ,dispatch) {
       status:'success',
       message:'cart updated successfully'
     }))
+  } catch (error) {
+    console.error('There was a problem sending data to Firebase:', error);
+    dispatch(setNotification({
+      visibility:true ,
+      title: 'some error accoured !',
+      status:'error',
+      message:'cart updated fails'
+    }))
+  }
+}
+
+async function getCartData(dispatch) {
+  dispatch(setNotification({
+    visibility:true ,
+    title: 'calling',
+    status:'sending',
+    message:'calling cart data'
+  }))
+
+  try {
+    const response = await fetch('https://movie-store-20f0d-default-rtdb.firebaseio.com/cart.json');
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    console.log(data);
+    dispatch(setNotification({
+      visibility:true ,
+      title: 'success',
+      status:'success',
+      message:'Got cart successfully'
+    }))
+    dispatch(setCart(data.items));
   } catch (error) {
     console.error('There was a problem sending data to Firebase:', error);
     dispatch(setNotification({
@@ -60,6 +96,11 @@ function App() {
     }
     updateCartData(orderList ,dispatch)
   },[orderList,dispatch ])
+
+  useEffect(()=>{
+    getCartData(dispatch)
+  },[dispatch]);
+
 
   console.log(notification)
   return (
